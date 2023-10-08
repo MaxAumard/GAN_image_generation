@@ -83,6 +83,6 @@ def train_gan(device, generator, discriminator, dataloader, criterion, optimizer
             torch.save(generator.state_dict(), os.path.join(save_dir, 'generator_epoch_{}.pth'.format(epoch)))
             torch.save(discriminator.state_dict(), os.path.join(save_dir, 'discriminator_epoch_{}.pth'.format(epoch)))
 
-        return G_losses, D_losses, img_list
+    return G_losses, D_losses, img_list
 
 # This function integrates the GAN training loop into your existing train_gan function.

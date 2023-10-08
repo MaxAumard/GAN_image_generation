@@ -45,6 +45,6 @@ if __name__ == '__main__':
     # Train the GAN
     G_losses, D_losses, img_list = train_gan(device, generator, discriminator, dataloader, criterion, optimizer_g,
                                              optimizer_d,
-                                             epochs=epochs, save_interval=500, save_dir='./results')
+                                             epochs=epochs, save_interval=5, save_dir='./results')
 
     print("Training complete!")
