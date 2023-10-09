@@ -1,5 +1,3 @@
-# Main script for training GAN
-
 import torch
 from torch.utils.data import DataLoader
 from torchvision import transforms
@@ -8,7 +6,7 @@ import torch.nn as nn
 from dataset_loader import MemeDataset
 from discriminator import Discriminator
 from generator import Generator
-from gan_training import train_gan  # Assuming train_gan_with_saving is in gan_training.py
+from gan_training import train_gan
 
 
 if __name__ == '__main__':
@@ -22,6 +20,7 @@ if __name__ == '__main__':
     # Device setup
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print("Device: {}".format(device))
+    
     # Hyperparameters
     lr = 0.0002
     beta1 = 0.5
