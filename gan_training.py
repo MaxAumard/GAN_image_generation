@@ -72,17 +72,15 @@ def train_gan(device, generator, discriminator, dataloader, criterion, optimizer
         print(f"[{epoch}/{epochs}]\tAvg Discriminator Loss: {avg_D_loss:.2f}\tAvg Generator Loss: {avg_G_loss:.2f}\tin {time.time() - start_time:.2f}s")
 
         if epoch % save_interval == 0:
-            # Save the generator's output at the beginning of each epoch
+            # Save the generator's output
             with torch.no_grad():
                 fake = generator(torch.randn(64, z_dim, 1, 1, device=device)).detach().cpu()
             img_list.append(torchvision.utils.make_grid(fake, padding=2, normalize=True))
             img_file = os.path.join(save_dir, 'epoch_{}.png'.format(epoch))
             torchvision.utils.save_image(fake, img_file)
 
-            # Save model checkpoints at the beginning of each epoch
+            # Save model checkpoints
             torch.save(generator.state_dict(), os.path.join(save_dir, 'generator_epoch_{}.pth'.format(epoch)))
             torch.save(discriminator.state_dict(), os.path.join(save_dir, 'discriminator_epoch_{}.pth'.format(epoch)))
 
     return G_losses, D_losses, img_list
-
-# This function integrates the GAN training loop into your existing train_gan function.
